@@ -4,6 +4,21 @@ from flask import render_template
 
 app = Flask(__name__)
 
+def loadAllPictures():
+  filepath = 'picDB.txt'
+  pictures=[]
+  with open(filepath) as fp:
+    line = fp.readline()
+    cnt = 1
+    while line:
+      if line!='':
+        fullPicInfo = line.strip().split(';')
+        pictures.append(fullPicInfo[1])
+      line = fp.readline()
+      cnt += 1
+  fp.close()
+  return pictures
+  
 #Pirmā lapa, kas tiks ielādēta
 @app.route('/',methods = ['POST', 'GET'])
 def root():
