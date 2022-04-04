@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 def loadAllPictures():
   filepath = 'picDB.txt'
@@ -18,7 +18,7 @@ def loadAllPictures():
       cnt += 1
   fp.close()
   return pictures
-  
+
 #Pirmā lapa, kas tiks ielādēta
 @app.route('/',methods = ['POST', 'GET'])
 def root():
@@ -30,8 +30,8 @@ def about():
 
 @app.route('/test',methods = ['POST', 'GET'])
 def test():
-    parametri = ["IQ","Augums","Kājas izmērs"]
-    images = ["https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d","https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-boy-cat-names-1606242656.jpg","https://www.rd.com/wp-content/uploads/2021/01/GettyImages-1175550351.jpg"]
+    parametri = ["IQ","Augums","Kāja"]
+    images = loadAllPictures()
     return render_template("test.html",parametri=parametri,images=images)
 
 #Pārbaudes lapa, lai saprastu, ka kods vispār strādā
@@ -39,5 +39,5 @@ def test():
 def health():
   return "Viss kārtībā!"
 
-if __name__ == '__main__':
+if _name_ == '_main_':
   app.run(debug="true")
